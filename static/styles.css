@@ -1,0 +1,120 @@
+/* Advanced Theme Variables */
+:root {
+    /* Dark Mode (Default) */
+    --k-bg: 10, 10, 10;          /* #0a0a0a - Deep Black */
+    --k-surface: 20, 20, 20;     /* #141414 - Charcoal Surface */
+    --k-cream: 244, 241, 234;    /* #f4f1ea - Warm Cream Text */
+    --k-gray: 136, 136, 136;     /* #888888 - Muted Text */
+    
+    --k-gold: 212, 175, 55;      /* #d4af37 - Bright Metallic Gold */
+    --k-gold-dim: 153, 122, 21;  /* #997a15 */
+    --k-emerald: 4, 92, 66;      /* #045c42 */
+    --k-emerald-glow: 0, 143, 104; /* #008f68 */
+    
+    /* Hero Section - Emerald Dominant Blends */
+    --hero-bg-overlay: rgba(0, 0, 0, 0.45);
+    /* Strong Emerald wash from top left */
+    --hero-grad-1: linear-gradient(135deg, rgba(0, 143, 104, 0.35) 0%, rgba(0,0,0,0) 45%, rgba(212, 175, 55, 0.1) 100%);
+    --hero-grad-2: linear-gradient(to top, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0.5) 40%, rgba(10, 10, 10, 0.8) 100%);
+    
+    /* Accents */
+    --gold-grad-1: #d4af37;
+    --gold-grad-2: #f3e5ab;
+    --shadow-emerald: rgba(0, 143, 104, 0.25);
+}
+
+:root.light-mode {
+    /* Light Mode */
+    --k-bg: 248, 245, 240;       /* #f8f5f0 - Soft Alabaster */
+    --k-surface: 255, 255, 255;  /* #ffffff - Pure White Surface */
+    --k-cream: 15, 15, 15;       /* #0f0f0f - Near Black Text */
+    --k-gray: 100, 100, 100;     /* #646464 - Darker Muted Text */
+    
+    --k-gold: 166, 124, 0;       /* #a67c00 - Darker gold for legibility */
+    --k-gold-dim: 115, 85, 0;    
+    --k-emerald: 2, 64, 46;      /* Deeper emerald for white text contrast */
+    --k-emerald-glow: 0, 115, 85; 
+    
+    /* Hero Section - Light Mode */
+    --hero-bg-overlay: rgba(255, 255, 255, 0.2); 
+    --hero-grad-1: linear-gradient(135deg, rgba(0, 143, 104, 0.2) 0%, transparent 50%, rgba(248, 245, 240, 0.3) 100%);
+    --hero-grad-2: linear-gradient(to top, rgba(248, 245, 240, 1) 0%, rgba(248, 245, 240, 0.3) 40%, rgba(248, 245, 240, 0.75) 100%);
+    
+    /* Accents */
+    --gold-grad-1: #b89326;      
+    --gold-grad-2: #d4af37;
+    --shadow-emerald: rgba(0, 115, 85, 0.3);
+}
+
+body {
+    background-color: rgb(var(--k-bg));
+    color: rgb(var(--k-cream));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Cinematic text gradient for gold elements */
+.text-gold-gradient {
+    background: linear-gradient(to right, var(--gold-grad-1), var(--gold-grad-2), var(--gold-grad-1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glowing button effect - Emerald */
+.btn-glow {
+    position: relative;
+    transition: all 0.4s ease;
+    background-color: rgb(var(--k-emerald-glow));
+    border: 1px solid rgb(var(--k-emerald-glow));
+}
+.btn-glow::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 20px 2px rgba(var(--k-emerald-glow), 0.4);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+.btn-glow:hover {
+    transform: translateY(-2px);
+    background-color: rgb(var(--k-emerald));
+    color: #f4f1ea; 
+}
+.btn-glow:hover::after {
+    box-shadow: 0 0 30px 8px rgba(var(--k-emerald-glow), 0.7);
+}
+
+/* Outline Button - Emerald */
+.btn-outline-emerald {
+    border: 1px solid rgb(var(--k-emerald-glow));
+    color: rgb(var(--k-emerald-glow));
+    transition: all 0.3s ease;
+}
+.btn-outline-emerald:hover {
+    background-color: rgba(var(--k-emerald-glow), 0.1);
+    box-shadow: 0 0 15px rgba(var(--k-emerald-glow), 0.3);
+}
+
+/* Scroll Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgb(var(--k-bg)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--k-gray)); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--k-emerald-glow)); }
